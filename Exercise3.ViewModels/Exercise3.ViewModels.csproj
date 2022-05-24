@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Exercise3.Data\Exercise3.Data.csproj" />
-    <ProjectReference Include="..\Exercise3.ViewModels\Exercise3.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>
