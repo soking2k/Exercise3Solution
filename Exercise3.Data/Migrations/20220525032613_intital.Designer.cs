@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Exercise3.Data.Migrations
 {
     [DbContext(typeof(Exercise3DbContext))]
-    [Migration("20220524091116_Intitial")]
-    partial class Intitial
+    [Migration("20220525032613_intital")]
+    partial class intital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,9 +43,8 @@ namespace Exercise3.Data.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("DaysUntilExpiration")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("DaysUntilExpiration")
+                        .HasColumnType("int");
 
                     b.Property<string>("DistributorName")
                         .IsRequired()
@@ -61,12 +60,41 @@ namespace Exercise3.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Agreements", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AgreementName = "Name 2",
+                            AgreementType = "Name 3",
+                            CreatedDate = new DateTime(2022, 5, 25, 10, 26, 13, 730, DateTimeKind.Local).AddTicks(8433),
+                            DaysUntilExpiration = 1,
+                            DistributorName = "Name 4",
+                            EffectiveDate = new DateTime(2022, 5, 25, 10, 26, 13, 730, DateTimeKind.Local).AddTicks(8425),
+                            ExpirationDate = new DateTime(2022, 5, 25, 10, 26, 13, 730, DateTimeKind.Local).AddTicks(8432),
+                            QuoteNumber = "Name 1",
+                            Status = "Invalid"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AgreementName = "Name 3",
+                            AgreementType = "Name 4",
+                            CreatedDate = new DateTime(2022, 5, 25, 10, 26, 13, 730, DateTimeKind.Local).AddTicks(8437),
+                            DaysUntilExpiration = 2,
+                            DistributorName = "Name 5",
+                            EffectiveDate = new DateTime(2022, 5, 25, 10, 26, 13, 730, DateTimeKind.Local).AddTicks(8435),
+                            ExpirationDate = new DateTime(2022, 5, 25, 10, 26, 13, 730, DateTimeKind.Local).AddTicks(8436),
+                            QuoteNumber = "Name 2",
+                            Status = "Published"
+                        });
                 });
 #pragma warning restore 612, 618
         }

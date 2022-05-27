@@ -41,9 +41,8 @@ namespace Exercise3.Data.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("DaysUntilExpiration")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("DaysUntilExpiration")
+                        .HasColumnType("int");
 
                     b.Property<string>("DistributorName")
                         .IsRequired()
@@ -59,8 +58,9 @@ namespace Exercise3.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -72,26 +72,26 @@ namespace Exercise3.Data.Migrations
                             Id = 1,
                             AgreementName = "Name 2",
                             AgreementType = "Name 3",
-                            CreatedDate = new DateTime(2022, 5, 24, 16, 16, 58, 638, DateTimeKind.Local).AddTicks(8900),
-                            DaysUntilExpiration = "Name 5",
+                            CreatedDate = new DateTime(2022, 5, 25, 10, 26, 13, 730, DateTimeKind.Local).AddTicks(8433),
+                            DaysUntilExpiration = 1,
                             DistributorName = "Name 4",
-                            EffectiveDate = new DateTime(2022, 5, 24, 16, 16, 58, 638, DateTimeKind.Local).AddTicks(8888),
-                            ExpirationDate = new DateTime(2022, 5, 24, 16, 16, 58, 638, DateTimeKind.Local).AddTicks(8900),
+                            EffectiveDate = new DateTime(2022, 5, 25, 10, 26, 13, 730, DateTimeKind.Local).AddTicks(8425),
+                            ExpirationDate = new DateTime(2022, 5, 25, 10, 26, 13, 730, DateTimeKind.Local).AddTicks(8432),
                             QuoteNumber = "Name 1",
-                            Status = 0
+                            Status = "Invalid"
                         },
                         new
                         {
                             Id = 2,
                             AgreementName = "Name 3",
                             AgreementType = "Name 4",
-                            CreatedDate = new DateTime(2022, 5, 24, 16, 16, 58, 638, DateTimeKind.Local).AddTicks(8904),
-                            DaysUntilExpiration = "Name 6",
+                            CreatedDate = new DateTime(2022, 5, 25, 10, 26, 13, 730, DateTimeKind.Local).AddTicks(8437),
+                            DaysUntilExpiration = 2,
                             DistributorName = "Name 5",
-                            EffectiveDate = new DateTime(2022, 5, 24, 16, 16, 58, 638, DateTimeKind.Local).AddTicks(8903),
-                            ExpirationDate = new DateTime(2022, 5, 24, 16, 16, 58, 638, DateTimeKind.Local).AddTicks(8903),
+                            EffectiveDate = new DateTime(2022, 5, 25, 10, 26, 13, 730, DateTimeKind.Local).AddTicks(8435),
+                            ExpirationDate = new DateTime(2022, 5, 25, 10, 26, 13, 730, DateTimeKind.Local).AddTicks(8436),
                             QuoteNumber = "Name 2",
-                            Status = 0
+                            Status = "Published"
                         });
                 });
 #pragma warning restore 612, 618

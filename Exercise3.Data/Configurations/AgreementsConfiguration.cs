@@ -16,7 +16,7 @@ namespace Exercise3.Data.Configurations
             //Cấu hình cho bảng
             builder.ToTable("Agreements");
             builder.HasKey(x => x.Id);
-
+            builder.Property(x => x.Status).IsRequired(true);
             builder.Property(x => x.AgreementName).IsRequired(true);
             builder.Property(x => x.QuoteNumber).IsRequired(true);
             builder.Property(x => x.AgreementType).IsRequired(true);

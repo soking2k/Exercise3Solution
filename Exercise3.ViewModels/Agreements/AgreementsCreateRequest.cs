@@ -5,22 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace Exercise3.Data.Entities
+namespace Exercise3.ViewModels.Agreements
 {
-    public class Agreements
+    public class AgreementsCreateRequest
     {
-        public int Id { get; set; }
         public string Status { get; set; }
-        public String QuoteNumber { get; set; }
-        public String AgreementName { get; set; }
-        public String AgreementType { get; set; }
-        public String DistributorName { get; set; }
+        public string QuoteNumber { get; set; }
+        public string AgreementName { get; set; }
+        public string AgreementType { get; set; }
+        public string DistributorName { get; set; }
         public DateTime EffectiveDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public DateTime CreatedDate { get; set; }
         public int DaysUntilExpiration { get; set; }
-
-
     }
 }

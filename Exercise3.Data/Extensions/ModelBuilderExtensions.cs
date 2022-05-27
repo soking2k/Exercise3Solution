@@ -1,4 +1,5 @@
 ﻿using Exercise3.Data.Entities;
+using Exercise3.Data.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,20 +16,20 @@ namespace Exercise3.Data.Extensions
             modelBuilder.Entity<Agreements>().HasData(
                 new Agreements() { 
                     Id = 1,
-                    Status = Enums.Status.Invalid, 
-                    QuoteNumber ="Name 1", 
+                    Status = "Invalid",
+                    QuoteNumber = "Name 1", 
                     AgreementName = "Name 2",
                     AgreementType = "Name 3",
                     DistributorName = "Name 4",
                     EffectiveDate = DateTime.Now,
                     ExpirationDate  = DateTime.Now,
                     CreatedDate = DateTime.Now, 
-                    DaysUntilExpiration = "Name 5"                      
+                    DaysUntilExpiration = 1                     
                 },
                     new Agreements()
                     {
                         Id = 2,
-                        Status = Enums.Status.Invalid,
+                        Status = "Published",
                         QuoteNumber = "Name 2",
                         AgreementName = "Name 3",
                         AgreementType = "Name 4",
@@ -36,7 +37,7 @@ namespace Exercise3.Data.Extensions
                         EffectiveDate = DateTime.Now,
                         ExpirationDate = DateTime.Now,
                         CreatedDate = DateTime.Now,
-                        DaysUntilExpiration = "Name 6"
+                        DaysUntilExpiration = 2
                     }
 
                 );

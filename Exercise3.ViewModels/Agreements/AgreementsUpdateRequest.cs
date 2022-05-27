@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace Exercise3.Data.Entities
+namespace Exercise3.ViewModels.Agreements
 {
-    public class Agreements
+    public class AgreementsUpdateRequest
     {
         public int Id { get; set; }
         public string Status { get; set; }
@@ -20,7 +19,5 @@ namespace Exercise3.Data.Entities
         public DateTime ExpirationDate { get; set; }
         public DateTime CreatedDate { get; set; }
         public int DaysUntilExpiration { get; set; }
-
-
     }
 }
