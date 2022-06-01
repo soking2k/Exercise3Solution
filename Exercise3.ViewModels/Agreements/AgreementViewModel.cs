@@ -9,6 +9,7 @@ namespace Exercise3.ViewModels.Agreements
 {
     public class AgreementViewModel
     {
+        public int Id { get; set; }
         public string Status { get; set; }
         public String QuoteNumber { get; set; }
         public String AgreementName { get; set; }
@@ -17,6 +18,6 @@ namespace Exercise3.ViewModels.Agreements
         public DateTime EffectiveDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public DateTime CreatedDate { get; set; }
-        public int DaysUntilExpiration { get; set; }
+        public int? DaysUntilExpiration { get; set; }
     }
 }

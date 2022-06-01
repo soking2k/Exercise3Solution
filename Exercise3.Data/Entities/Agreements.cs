@@ -19,7 +19,7 @@ namespace Exercise3.Data.Entities
         public DateTime EffectiveDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public DateTime CreatedDate { get; set; }
-        public int DaysUntilExpiration { get; set; }
+        public int? DaysUntilExpiration { get; set; }
 
 
     }

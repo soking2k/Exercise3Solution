@@ -33,7 +33,8 @@ namespace Exercise3.Application.Service
                 EffectiveDate = request.EffectiveDate,
                 ExpirationDate = request.ExpirationDate,
                 CreatedDate = request.CreatedDate,
-                DaysUntilExpiration = request.DaysUntilExpiration
+                DaysUntilExpiration = (int)(request.ExpirationDate - request.CreatedDate).TotalDays
+
             };
             _context.Agreements.Add(agree);
 
@@ -95,7 +96,7 @@ namespace Exercise3.Application.Service
             agreements.EffectiveDate = request.EffectiveDate;
             agreements.ExpirationDate = request.ExpirationDate;
             agreements.CreatedDate = request.CreatedDate;
-            agreements.DaysUntilExpiration = request.DaysUntilExpiration;
+            agreements.DaysUntilExpiration = (int)(request.ExpirationDate - request.CreatedDate).TotalDays;
 
             return await _context.SaveChangesAsync();
 
@@ -115,7 +116,10 @@ namespace Exercise3.Application.Service
    
         public async Task<PagedResult<AgreementViewModel>> GetAllPaging(GetAgreementsFilter request)
         {
-            var query = from p in _context.Agreements select new { p };
+            var query = from p in _context.Agreements
+                                          orderby p.Id descending
+                                          select new {p};
+         //   var query = from p in _context.Agreements select new { p };
             //2. filter
             if (!string.IsNullOrEmpty(request.status))
                 query = query.Where(x => x.p.Status.Contains(request.status));
@@ -127,6 +131,16 @@ namespace Exercise3.Application.Service
                 query = query.Where(x => x.p.AgreementType.Contains(request.agreementtype));
             if (!string.IsNullOrEmpty(request.disbutorname))
                 query = query.Where(x => x.p.DistributorName.Contains(request.disbutorname));
+            if (request.EffectiveDate !=null)
+                query = query.Where(x => x.p.EffectiveDate.Date.Equals(request.EffectiveDate));
+            if (request.ExpirationDate != null)
+                query = query.Where(x => x.p.ExpirationDate.Date.Equals(request.ExpirationDate));
+            if (request.CreatedDate != null)
+                query = query.Where(x => x.p.CreatedDate.Date.Equals(request.CreatedDate));
+            if (request.DaysUntilExpiration != null && request.DaysUntilExpiration != 0)
+                query = query.Where(x => x.p.DaysUntilExpiration.Equals(request.DaysUntilExpiration));
+
+
 
 
 
@@ -138,7 +152,7 @@ namespace Exercise3.Application.Service
                 .Take(request.PageSize)
                 .Select(x => new AgreementViewModel()
                 {
-                    //Id = x.p.Id,
+                    Id = x.p.Id,
                     Status = x.p.Status,
                     QuoteNumber = x.p.QuoteNumber,
                     AgreementName = x.p.AgreementName,

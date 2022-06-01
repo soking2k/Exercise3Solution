@@ -14,7 +14,10 @@ namespace Exercise3.ViewModels.Agreements
         public string? agreementname { get; set; }
         public string? agreementtype { get; set; }
         public string? disbutorname { get; set; }
-        
+        public DateTime? EffectiveDate { get; set; }
+        public DateTime? ExpirationDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? DaysUntilExpiration { get; set; }
 
     }
 }
