@@ -28,6 +28,12 @@ builder.Services.AddCors(options =>
             policy.WithOrigins("http://localhost:4200")
                                 .AllowAnyHeader()
                                 .AllowAnyMethod();
+            policy.WithOrigins("https://soking2k.github.io")
+                               .AllowAnyHeader()
+                               .AllowAnyMethod();
+            policy.WithOrigins("http://103.92.24.117")
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
         });
 });
 
