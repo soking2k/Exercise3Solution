@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Exercise3.BackendApi.Controllers
 {
     [Route("api/[controller]")]
+    [EnableCors("AnotherPolicy")]
     [ApiController]
     public class AgreementsController : Controller
     {
@@ -18,7 +19,6 @@ namespace Exercise3.BackendApi.Controllers
         }
         //http://localhost:port/agreements
         [HttpGet]
-        [EnableCors("AnotherPolicy")]
 
         public async Task<IActionResult> GetAll()
         {
@@ -26,19 +26,19 @@ namespace Exercise3.BackendApi.Controllers
             return Json(agreements);
         }
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm] AgreementsCreateRequest request)
+
+        public async Task<IActionResult> Create([FromBody] AgreementsCreateRequest request)
         {
             var agreementid = await _publicAgreementsService.Create(request);
             if (agreementid == 0)
                 return BadRequest();
-
 
             return Ok();
         }
 
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromForm] AgreementsUpdateRequest request)
+        public async Task<IActionResult> Update([FromBody] AgreementsUpdateRequest request)
         {
             var affectedResult = await _publicAgreementsService.Update(request);
             if (affectedResult == 0)
@@ -66,7 +66,6 @@ namespace Exercise3.BackendApi.Controllers
         }
 
         [HttpGet("paging")]
-        [EnableCors("AnotherPolicy")]
         public async Task<IActionResult> Get([FromQuery] GetAgreementsFilter request)
         {
             var agreements = await _publicAgreementsService.GetAllPaging(request);
