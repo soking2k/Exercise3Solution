@@ -10,6 +10,7 @@ namespace Exercise3.Application.Service
 {
     public interface iPublicAgreementService
     {
+
         Task<List<AgreementViewModel>> GetAll();
 
         Task<int> Create(AgreementsCreateRequest request);
