@@ -1,5 +1,8 @@
 using Exercise3.Application.Service;
+using Exercise3.Application.System.UsersLogin;
 using Exercise3.Data.EF;
+using Exercise3.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,9 +12,14 @@ builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("Exercise3Db");
 builder.Services.AddDbContext<Exercise3DbContext>(x => x.UseSqlServer(connectionString));
+builder.Services.AddIdentity<Users, UsersRole>()
+              .AddEntityFrameworkStores<Exercise3DbContext>();
+builder.Services.AddTransient<UserManager<Users>, UserManager<Users>>();
+builder.Services.AddTransient<SignInManager<Users>, SignInManager<Users>>();
 builder.Services.AddTransient<iPublicAgreementService, PublicAgreementService>();
+builder.Services.AddTransient<IUserService, UserService>();
 
-builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
